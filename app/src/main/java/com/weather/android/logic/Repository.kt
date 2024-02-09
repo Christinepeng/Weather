@@ -2,8 +2,9 @@ package com.weather.android.logic
 
 import android.util.Log
 import androidx.lifecycle.liveData
+import com.weather.android.logic.model.DailyTimeData
+import com.weather.android.logic.model.HourlyTimeData
 import com.weather.android.logic.model.Place
-import com.weather.android.logic.model.TimeData
 import com.weather.android.logic.network.WeatherNetwork
 import kotlinx.coroutines.Dispatchers
 
@@ -24,19 +25,14 @@ object Repository {
     }
 
     fun searchWeather(query: String) = liveData(Dispatchers.IO) {
-        Log.v("xd", query)
+        Log.v("xd", "query + $query + |")
         val result = try {
             val weatherResponse = WeatherNetwork.searchWeather(query)
-            if (weatherResponse != null) {
-                Log.v("xd", weatherResponse.toString())
-                Result.success(weatherResponse.timelines.daily)
-            }
-            else {
-                Result.failure(RuntimeException("Response is null"))
-            }
+            Log.v("xd", weatherResponse.toString().length.toString())
+            Result.success(weatherResponse.timelines.hourly)
         } catch (e: Exception) {
             Log.v("xd", "failed" + e.toString())
-            Result.failure<List<TimeData>>(e)
+            Result.failure<List<HourlyTimeData>>(e)
         }
         emit(result)
     }

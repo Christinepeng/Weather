@@ -3,6 +3,7 @@ package com.weather.android
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.weather.android.logic.model.Location
 
 class WeatherApplication : Application() {
     companion object {

@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface WeatherService {
-    @GET("v4/weather/forecast?location=san%20francisco&apikey=ImAUAK80vu09qEi4eUcFUilDWRORaaOY")
-    fun searchWeather(@Query("query") query: String): Call<WeatherResponse>
+    @GET("v4/weather/forecast")
+    fun searchWeather(@Query("location") query: String, @Query("apikey") apikey: String = "ImAUAK80vu09qEi4eUcFUilDWRORaaOY"): Call<WeatherResponse>
 }

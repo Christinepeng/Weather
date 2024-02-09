@@ -1,6 +1,7 @@
 package com.weather.android.ui.weather
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,8 +49,9 @@ class WeatherFragment : Fragment() {
 //            }
 //        }
 
-        binding.searchBtn.setOnClickListener { editable ->
-            val content = editable.toString()
+        binding.searchBtn.setOnClickListener { _ ->
+            val content = binding.searchPlaceEdit.text.toString()
+            Log.v("xd", content)
             if (content.isNotEmpty()) {
                 viewModel.searchPlaces(content)
             } else {
@@ -62,6 +64,7 @@ class WeatherFragment : Fragment() {
 
         viewModel.weatherLiveData.observe(viewLifecycleOwner, Observer { result ->
             val weather = result.getOrNull()
+            Log.v("xd", "weather: ${weather.toString()}")
             if (weather != null) {
                 binding.recyclerView.visibility = View.VISIBLE
                 binding.bgImageView.visibility = View.GONE

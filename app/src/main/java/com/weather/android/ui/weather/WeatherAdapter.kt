@@ -7,9 +7,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.weather.android.R
-import com.weather.android.logic.model.TimeData
+import com.weather.android.logic.model.DailyTimeData
+import com.weather.android.logic.model.HourlyTimeData
 
-class WeatherAdapter(private val fragment: Fragment, private val weatherList: List<TimeData>) :
+class WeatherAdapter(private val fragment: Fragment, private val weatherList: List<HourlyTimeData>) :
     RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val time: TextView = view.findViewById(R.id.time)
@@ -24,15 +25,10 @@ class WeatherAdapter(private val fragment: Fragment, private val weatherList: Li
         return ViewHolder(view)
     }
 
-//    override fun onBindViewHolder(holder: WeatherAdapter.ViewHolder, position: Int) {
-//        holder.
-//
-//    }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val weather = weatherList[position]
-        holder.time.text = weather.time
-        holder.temperature.text = weather.values.toString()
+        holder.time.text = "time: ${weather.time}"
+        holder.temperature.text = "temperature: ${ weather.values.temperature.toString() }"
     }
 
     override fun getItemCount() = weatherList.size
