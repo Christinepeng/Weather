@@ -14,7 +14,7 @@ class WeatherViewModel : ViewModel() {
 //    private val locationLiveData = MutableLiveData<Location>()
 //    var locationLng = ""
 //    var locationLat = ""
-    var placeName = ""
+//    var placeName = ""
 //    val weatherLiveData = Transformations.switchMap(locationLiveData) { location ->
 //        Repository.refreshWeather(location.lng, location.lat)
 //    }
@@ -30,6 +30,6 @@ class WeatherViewModel : ViewModel() {
 
     fun searchPlaces(query: String) {
         searchLiveData.value = query
-        placeName = query
+//        placeName = query
     }
 }
