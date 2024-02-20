@@ -22,11 +22,13 @@ class WeatherFragment : Fragment() {
     private val binding get() = _binding!!
     val viewModel by lazy { ViewModelProvider(this).get(WeatherViewModel::class.java) }
     private lateinit var adapter: WeatherAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentWeatherBinding.inflate(inflater, container, false)
+        Log.e("xd", "fragment creation")
         val view = binding.root
         return view
     }
@@ -37,8 +39,10 @@ class WeatherFragment : Fragment() {
         binding.recyclerView.layoutManager = layoutManager
         adapter = WeatherAdapter(this, viewModel.weatherList)
         binding.recyclerView.adapter = adapter
-//        binding.searchPlaceEdit.addTextChangedListener { editable ->
-//            val content = editable.toString()
+
+//        binding.searchBtn.setOnClickListener { _ ->
+//            val content = binding.searchPlaceEdit.text.toString()
+//            Log.v("xd", content)
 //            if (content.isNotEmpty()) {
 //                viewModel.searchPlaces(content)
 //            } else {
@@ -49,22 +53,11 @@ class WeatherFragment : Fragment() {
 //            }
 //        }
 
-        binding.searchBtn.setOnClickListener { _ ->
-            val content = binding.searchPlaceEdit.text.toString()
-            Log.v("xd", content)
-            if (content.isNotEmpty()) {
-                viewModel.searchPlaces(content)
-            } else {
-                binding.recyclerView.visibility = View.GONE
-                binding.bgImageView.visibility = View.VISIBLE
-                viewModel.weatherList.clear()
-                adapter.notifyDataSetChanged()
-            }
-        }
+        Log.e("xd", "fragment creation on activity")
 
         viewModel.weatherLiveData.observe(viewLifecycleOwner, Observer { result ->
             val weather = result.getOrNull()
-            Log.v("xd", "weather: ${weather.toString()}")
+            Log.e("xd", "weather: ${weather.toString()}")
             if (weather != null) {
                 binding.recyclerView.visibility = View.VISIBLE
                 binding.bgImageView.visibility = View.GONE
@@ -81,5 +74,10 @@ class WeatherFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun queryWeather(cityName: String) {
+        Log.e("xd", "fragment: query weather $cityName")
+        viewModel.searchPlaces(cityName)
     }
 }

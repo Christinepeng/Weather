@@ -3,9 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <fragment
-        android:id="@+id/weatherFragment"
-        android:name="com.weather.android.ui.weather.WeatherFragment"
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/autocomplete_support_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"/>
+
+<!--    <fragment-->
+<!--        android:id="@+id/weatherFragment"-->
+<!--        android:name="com.weather.android.ui.place.PlaceFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
 </FrameLayout>
