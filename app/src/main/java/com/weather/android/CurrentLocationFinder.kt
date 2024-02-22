@@ -56,7 +56,9 @@ class CurrentLocationFinder(
             response?.let {
 //                binding.response.text = StringUtil.stringify(it, isDisplayRawResultsChecked)
 //                binding.title.text = StringUtil.stringify(it)
-                binding.title.text = it.placeLikelihoods[0].place.address
+
+                binding.title.text =
+                    getCityNameFromAddress(it.placeLikelihoods[0].place.address!!) + " (Current Location)"
 //                Log.e("xd", "Suc ${StringUtil.stringify(it)}")
             }
         }
@@ -66,5 +68,10 @@ class CurrentLocationFinder(
 //            binding.response.text = exception.message
         }
 //        currentPlaceTask.addOnCompleteListener { setLoading(false) }
+    }
+
+    private fun getCityNameFromAddress(placeAddress: String): String {
+        val placeAddressSplitByComma = placeAddress.split(",").reversed()
+        return placeAddressSplitByComma[2]
     }
 }
