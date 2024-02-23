@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var placesClient: PlacesClient
-    private lateinit var fieldSelector: FieldSelector
     private lateinit var currentLocationFinder: CurrentLocationFinder
 
     @SuppressLint("MissingPermission")
@@ -122,7 +121,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(bundle: Bundle) {
         super.onSaveInstanceState(bundle)
-        fieldSelector.onSaveInstanceState(bundle)
     }
 
 

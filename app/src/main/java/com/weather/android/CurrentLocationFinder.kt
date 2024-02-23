@@ -59,10 +59,12 @@ class CurrentLocationFinder(
 //                binding.response.text = StringUtil.stringify(it, isDisplayRawResultsChecked)
 //                binding.title.text = StringUtil.stringify(it)
 
+                val currentCityName = getCityNameFromAddress(it.placeLikelihoods[0].place.address!!)
                 binding.title.text =
-                    getCityNameFromAddress(it.placeLikelihoods[0].place.address!!) + " (Current Location)"
-                binding.currentLocationCardView.visibility = VISIBLE
-//                Log.e("xd", "Suc ${StringUtil.stringify(it)}")
+                    currentCityName + " (Current Location)"
+//                binding.subhead.text = WeatherFragment().queryWeather(currentCityName).toString()
+                binding.currentLocationCardView.visibility =
+                    VISIBLE
             }
         }
         currentPlaceTask.addOnFailureListener { exception: Exception ->
