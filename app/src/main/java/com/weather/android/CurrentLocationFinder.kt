@@ -3,7 +3,8 @@ package com.weather.android
 import android.Manifest
 import android.annotation.SuppressLint
 import android.util.Log
-import android.view.View.INVISIBLE
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.RequiresPermission
 import com.google.android.libraries.places.api.model.Place
@@ -60,13 +61,14 @@ class CurrentLocationFinder(
 
                 binding.title.text =
                     getCityNameFromAddress(it.placeLikelihoods[0].place.address!!) + " (Current Location)"
+                binding.currentLocationCardView.visibility = VISIBLE
 //                Log.e("xd", "Suc ${StringUtil.stringify(it)}")
             }
         }
         currentPlaceTask.addOnFailureListener { exception: Exception ->
             exception.printStackTrace()
             Log.e("xd", "Failed $exception")
-            binding.currentLocationCardView.visibility = INVISIBLE
+            binding.currentLocationCardView.visibility = GONE
 //            binding.response.text = exception.message
         }
 //        currentPlaceTask.addOnCompleteListener { setLoading(false) }
