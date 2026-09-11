@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.net.PlacesClient
+import com.weather.android.BuildConfig
 import com.weather.android.R
 import com.weather.android.databinding.FragmentPlaceBinding
 
@@ -26,8 +27,8 @@ class PlaceFragment : Fragment() {
     private lateinit var adapter: PlaceAdapter
 
     private fun initPlaceClient() {
-        val apiKey = "AIzaSyDQaPBODXTd9ZY6cW90ABbO0hn7FSh3oZs"
-        if (apiKey.isEmpty()) {
+        val apiKey = BuildConfig.PLACES_API_KEY
+        if (apiKey.isBlank() || apiKey == "DEFAULT_API_KEY") {
             Log.e("Places test", "No api key")
             return
         }
