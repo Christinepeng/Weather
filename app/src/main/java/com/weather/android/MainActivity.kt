@@ -63,8 +63,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // val apiKey = BuildConfig.PLACES_API_KEY
-        val apiKey = "AIzaSyDQaPBODXTd9ZY6cW90ABbO0hn7FSh3oZs"
+        val apiKey = BuildConfig.PLACES_API_KEY
+        if (apiKey.isBlank() || apiKey == "DEFAULT_API_KEY") {
+            Toast.makeText(this, "Places API key is not configured", Toast.LENGTH_LONG).show()
+            return
+        }
 
         // Setup Places Client
         if (!Places.isInitialized()) {
@@ -125,4 +128,3 @@ class MainActivity : AppCompatActivity() {
 
 
 }
-
